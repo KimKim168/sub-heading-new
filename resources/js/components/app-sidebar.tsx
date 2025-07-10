@@ -110,51 +110,57 @@ export function AppSidebar() {
         //         },
         //     ],
         // },
-        // {
-        //     title: t('Videos'),
-        //     permission: 'video view',
-        //     url: '/admin/videos',
-        //     icon: TvMinimalPlayIcon,
-        //     subItems: [
-        //         {
-        //             title: t('Videos'),
-        //             permission: 'video view',
-        //             url: '/admin/videos',
-        //             icon: TvMinimalPlayIcon,
-        //         },
-        //         {
-        //             title: t('Playlists'),
-        //             permission: 'video view',
-        //             url: '/admin/video_play_lists',
-        //             icon: TvMinimalPlayIcon,
-        //         },
-        //     ],
-        // },
         {
             title: t('Videos'),
             permission: 'video view',
             url: '/admin/videos',
             icon: TvMinimalPlayIcon,
-        },
-        {
-            title: t('Documents'),
-            permission: 'document view',
-            url: '',
-            external_url: 'http://rule-library.kimsoreya.site/',
-            icon: FilesIcon,
-        },
-        {
-            title: t('Posts'),
-            permission: 'post view',
-            icon: FilePenLineIcon,
-            url: '/admin/posts',
-        },
-         {
-                    title: t('Pages'),
-                    permission: 'page view',
-                    icon: AppWindowIcon,
-                    url: '/admin/pages',
+            subItems: [
+                {
+                    title: t('Videos'),
+                    permission: 'video view',
+                    url: '/admin/videos',
+                    icon: TvMinimalPlayIcon,
                 },
+                 {
+                    title: t('Categories'),
+                    permission: 'video view',
+                    icon: Layers2Icon,
+                    url: '/admin/video_categories',
+                },
+                // {
+                //     title: t('Playlists'),
+                //     permission: 'video view',
+                //     url: '/admin/video_play_lists',
+                //     icon: TvMinimalPlayIcon,
+                // },
+            ],
+        },
+        // {
+        //     title: t('Videos'),
+        //     permission: 'video view',
+        //     url: '/admin/videos',
+        //     icon: TvMinimalPlayIcon,
+        // },
+        // {
+        //     title: t('Documents'),
+        //     permission: 'document view',
+        //     url: '',
+        //     external_url: 'http://rule-library.kimsoreya.site/',
+        //     icon: FilesIcon,
+        // },
+        // {
+        //     title: t('Posts'),
+        //     permission: 'post view',
+        //     icon: FilePenLineIcon,
+        //     url: '/admin/posts',
+        // },
+        //  {
+        //             title: t('Pages'),
+        //             permission: 'page view',
+        //             icon: AppWindowIcon,
+        //             url: '/admin/pages',
+        //         },
         // {
         //     title: t('Pages'),
         //     permission: 'page view',
@@ -188,26 +194,26 @@ export function AppSidebar() {
         //         },
         //     ],
         // },
-        // {
-        //     title: t('Pages'),
-        //     permission: 'page view',
-        //     url: '/admin/pages',
-        //     icon: AppWindowIcon,
-        //     subItems: [
-        //         {
-        //             title: t('Pages'),
-        //             permission: 'page view',
-        //             icon: AppWindowIcon,
-        //             url: '/admin/pages',
-        //         },
-        //         {
-        //             title: t('Positions'),
-        //             permission: 'page view',
-        //             icon: ReplaceAllIcon,
-        //             url: '/admin/page_positions',
-        //         },
-        //     ],
-        // },
+        {
+            title: t('Pages'),
+            permission: 'page view',
+            url: '/admin/pages',
+            icon: AppWindowIcon,
+            subItems: [
+                {
+                    title: t('Pages'),
+                    permission: 'page view',
+                    icon: AppWindowIcon,
+                    url: '/admin/pages',
+                },
+                {
+                    title: t('Positions'),
+                    permission: 'page view',
+                    icon: ReplaceAllIcon,
+                    url: '/admin/page_positions',
+                },
+            ],
+        },
         // {
         //     title: t('Messages'),
         //     permission: 'message view',

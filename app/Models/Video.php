@@ -15,6 +15,10 @@ class Video extends Model
     {
         return $this->belongsTo(VideoPlaylist::class, 'playlist_code', 'code');
     }
+    public function category()
+    {
+        return $this->belongsTo(VideoCategory::class, 'category_code', 'code');
+    }
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');

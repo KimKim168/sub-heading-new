@@ -16,7 +16,7 @@ return Inertia::render('westernUniversityNew/Home');
 
 Route::get('/contact', function () {
     return Inertia::render('westernUniversityNew/Contact');
-});
+});     
 
 Route::get('/history_and_values', function () {
         return Inertia::render('westernUniversityNew/About/HistoryAndValues');

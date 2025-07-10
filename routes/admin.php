@@ -38,6 +38,7 @@ use App\Http\Controllers\TeamCategoryController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoCategoryController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideoPlayListController;
 use Illuminate\Support\Facades\Route;
@@ -157,6 +158,12 @@ Route::middleware('auth')->group(function () {
     Route::post('admin/item_categories/{item_category}/update', [ItemCategoryController::class, 'update']);
     Route::get('admin/all_item_categories', [ItemCategoryController::class, 'all_item_categories']);
     Route::post('admin/item_categories/{item_category}/update_status', [ItemCategoryController::class, 'update_status']);
+
+    //Video Category Route
+    Route::resource('admin/video_categories', VideoCategoryController::class);
+    Route::post('admin/video_categories/{video_category}/update', [VideoCategoryController::class, 'update']);
+    Route::get('admin/all_video_categories', [VideoCategoryController::class, 'all_video_categories']);
+    Route::post('admin/video_categories/{video_category}/update_status', [ItemCategoryController::class, 'update_status']);
 
     // Shop Route
     Route::resource('admin/shops', ShopController::class);

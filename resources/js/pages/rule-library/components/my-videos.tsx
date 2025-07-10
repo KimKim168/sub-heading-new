@@ -1,48 +1,81 @@
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import FilterCategory from '@/pages/subHeading/components/FilterCategory';
+import { ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import MyHeadingStyle1 from './my-heading-style-1';
+import MySearch from './my-search';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from './ui/dialog';
-import { usePage } from '@inertiajs/react';
 
-// const videos = [
-//     // Url MP4
-//     {
-//         id: 1,
-//         src: 'https://www.youtube.com/embed/1VdS89qP3O8?si=lebWECMrb577Mn0e',
-//         title: 'Video 1',
-//         thumb: '/assets/rule-library/images/video.jpg',
-//     },
-//     // Iframe
-//     {
-//         id: 2,
-//         src: 'https://www.youtube.com/embed/1VdS89qP3O8?si=lebWECMrb577Mn0e',
-//         title: 'Video 2',
-//         thumb: '/assets/rule-library/images/video.jpg',
-//     },
-//     // Youtube Embed
-//     {
-//         id: 3,
-//         src: 'https://www.youtube.com/embed/1VdS89qP3O8?si=lebWECMrb577Mn0e',
-//         title: 'Video 3',
-//         thumb: '/assets/rule-library/images/video.jpg',
-//     },
-//     // Locale
-//     {
-//         id: 3,
-//         src: 'https://www.youtube.com/embed/1VdS89qP3O8?si=lebWECMrb577Mn0e',
-//         title: 'Video 4',
-//         thumb: '/assets/rule-library/images/video.jpg',
-//     },
-// ];
+const videos = [
+    {
+        id: 1,
+        name: 'Intro to Our Library',
+        link: 'https://www.youtube.com/embed/1VdS89qP3O8',
+        images: [
+            {
+                image: 'note5.jpg',
+            },
+        ],
+    },
+    {
+        id: 2,
+        name: 'ភោជនីយដ្ឋានដែលមានវ័យចំណាស់ជាងគេលើពិភពលោក El Soprino De Botin',
+        link: 'https://www.youtube.com/embed/6DqN_vXB_kk?si=Z_WaNkD33oRtZkuf',
+        images: [
+            {
+                image: 'note6.png',
+            },
+        ],
+    },
+    {
+        id: 3,
+        name: 'Student Interviews',
+        link: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        images: [
+            {
+                image: 'note3.png',
+            },
+        ],
+    },
+    {
+        id: 4,
+        name: 'Library Services Tour',
+        link: 'https://www.youtube.com/embed/tgbNymZ7vqY',
+        images: [
+            {
+                image: 'note1.png',
+            },
+        ],
+    },
+    {
+        id: 5,
+        name: 'Intro to Our Library',
+        link: 'https://www.youtube.com/embed/1VdS89qP3O8',
+        images: [
+            {
+                image: 'note5.jpg',
+            },
+        ],
+    },
+    {
+        id: 6,
+        name: 'ភោជនីយដ្ឋានដែលមានវ័យចំណាស់ជាងគេលើពិភពលោក El Soprino De Botin',
+        link: 'https://www.youtube.com/embed/6DqN_vXB_kk?si=Z_WaNkD33oRtZkuf',
+        images: [
+            {
+                image: 'note6.png',
+            },
+        ],
+    },
+];
 
 export default function MyVideoGallery() {
-    const { videos } = usePage().props;
+    // const { videos } = usePage().props;
     // console.log(videos);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {   
+    useEffect(() => {
         if (isOpen) {
             console.log(`Currently displaying: ${videos[currentIndex].name}`);
         }
@@ -66,43 +99,50 @@ export default function MyVideoGallery() {
             setCurrentIndex((prevIndex) => prevIndex - 1);
         }
     };
-    
 
     if (!videos || videos?.length === 0) {
-    return (
-        <div className="container mx-auto my-10 max-w-screen-2xl px-3 lg:px-20 text-center text-gray-500 dark:text-gray-300">
-        </div>
-    );
-}
+        return <div className="container mx-auto my-10 max-w-screen-xl px-6 text-center text-gray-500 lg:px-20 dark:text-gray-300"></div>;
+    }
     return (
         <>
-            <div className="container mx-auto my-10 max-w-screen-2xl px-3 lg:px-20">
-                <div className="flex">
+            <div className="mx-auto max-w-screen-xl px-6 lg:px-0">
+                    <div className='md:hidden mt-5'><MySearch /></div>
+                <div className="flex items-center justify-between">
                     <MyHeadingStyle1 title="Videos" />
+                    <div className="flex gap-2 items-center">
+                        <div className='hidden md:block'><MySearch /></div>
+                        <FilterCategory />
+                    </div>
                 </div>
+
                 <div>
-                    <div className={`grid grid-cols-1 gap-2 lg:grid-cols-3 xl:grid-cols-4`}>
+                    <div className={`grid grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-3`}>
                         {videos?.map((item, index) => (
                             <div
                                 key={index}
-                                className="group cursor-pointer"
+                                className="group relative cursor-pointer overflow-hidden rounded-3xl shadow-xl transition-all duration-300 hover:scale-95"
                                 onClick={() => {
-                                    setCurrentIndex(index); // Set current video index
-                                    setIsOpen(true); // Open the lightbox
+                                    setCurrentIndex(index);
+                                    setIsOpen(true);
                                 }}
                             >
-                                <div className="aspect-w-16 aspect-h-9 relative w-full overflow-hidden rounded-xl bg-black">
-                                    <img
-                                        width={400}
-                                        height={400}
-                                        src={`/assets/images/items/${item.images[0].image}`} // Replace with dynamic thumbnail if available
-                                        className="aspect-video w-full transform object-cover transition-all duration-300 group-hover:scale-105"
-                                    />
-                                    <span className="group-hover:bg-true-primary bg-true-primary/80 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/50 p-2 text-white shadow-lg transition-all duration-300 group-hover:scale-110">
-                                        <Play size={24} />
-                                    </span>
+                                <img
+                                    src={`/assets/demo-images/note-tech/${item.images[0].image}`}
+                                    alt="image"
+                                    className="aspect-video w-full object-cover"
+                                />
+                                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4">
+                                    <div className="text-base font-semibold text-white">{item.name}</div>
+                                    {/* <div className="mt-1 text-sm text-gray-300">{item.short_description}</div> */}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-1 text-sm text-white">
+                                            <PlayCircle /> <span>Play video</span>
+                                        </div>
+                                        <button className="rounded-full bg-white px-4 py-1 text-sm font-semibold text-black shadow transition hover:bg-gray-200">
+                                            Watch
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="text-foreground mt-2 text-start text-base font-medium">{item.name}</div>
                             </div>
                         ))}
                     </div>

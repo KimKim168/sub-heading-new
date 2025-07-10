@@ -23,7 +23,7 @@ const deliveries = [
 
 function MyApp() {
     return (
-        <div className="px-4 xl:px-0 mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="px-5 xl:px-0 mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {deliveries.map((item, index) => (
                 <div key={index} className="mx-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
                     {/* Top Section */}
