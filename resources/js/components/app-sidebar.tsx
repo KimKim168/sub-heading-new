@@ -168,32 +168,32 @@ export function AppSidebar() {
         //     url: '/admin/pages',
         // },
 
-        // {
-        //     title: t('Posts'),
-        //     permission: 'post view',
-        //     url: '/admin/posts',
-        //     icon: FilePenLineIcon,
-        //     subItems: [
-        //         {
-        //             title: t('Posts'),
-        //             permission: 'post view',
-        //             icon: FilePenLineIcon,
-        //             url: '/admin/posts',
-        //         },
-        //         {
-        //             title: t('Categories'),
-        //             permission: 'post view',
-        //             icon: Layers2Icon,
-        //             url: '/admin/post_categories',
-        //         },
-        //         {
-        //             title: t('View Counts'),
-        //             permission: 'post view',
-        //             icon: Tally5Icon,
-        //             url: '/admin/post_view_counts',
-        //         },
-        //     ],
-        // },
+        {
+            title: t('Posts'),
+            permission: 'post view',
+            url: '/admin/posts',
+            icon: FilePenLineIcon,
+            subItems: [
+                {
+                    title: t('Posts'),
+                    permission: 'post view',
+                    icon: FilePenLineIcon,
+                    url: '/admin/posts',
+                },
+                {
+                    title: t('Categories'),
+                    permission: 'post view',
+                    icon: Layers2Icon,
+                    url: '/admin/post_categories',
+                },
+                // {
+                //     title: t('View Counts'),
+                //     permission: 'post view',
+                //     icon: Tally5Icon,
+                //     url: '/admin/post_view_counts',
+                // },
+            ],
+        },
         {
             title: t('Pages'),
             permission: 'page view',
@@ -283,20 +283,20 @@ export function AppSidebar() {
             permission: 'banner view',
             url: '/admin/banners',
             icon: GalleryThumbnailsIcon,
-            subItems: [
-                {
-                    title: t('Banners'),
-                    permission: 'banner view',
-                    icon: GalleryThumbnailsIcon,
-                    url: '/admin/banners',
-                },
-                {
-                    title: t('Positions'),
-                    permission: 'banner view',
-                    icon: ReplaceAllIcon,
-                    url: '/admin/banner_positions',
-                },
-            ],
+            // subItems: [
+            //     {
+            //         title: t('Banners'),
+            //         permission: 'banner view',
+            //         icon: GalleryThumbnailsIcon,
+            //         url: '/admin/banners',
+            //     },
+            //     {
+            //         title: t('Positions'),
+            //         permission: 'banner view',
+            //         icon: ReplaceAllIcon,
+            //         url: '/admin/banner_positions',
+            //     },
+            // ],
         },
         {
             title: t('Users'),

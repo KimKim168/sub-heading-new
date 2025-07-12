@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\FileHelper;
 use App\Helpers\ImageHelper;
 use App\Models\Video;
+use App\Models\VideoCategory;
 use App\Models\VideoPlayList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -64,9 +65,11 @@ class VideoController extends Controller implements HasMiddleware
             ->orderBy('id', 'desc')
             ->get();
         // dd($playlists);
-
+        $videoCategories = VideoCategory::where('status', 'active')->orderBy('name')->get();
+        // return  $videoCategories ;
         return Inertia::render('admin/videos/Create', [
             'playlists' => $playlists,
+            'videoCategories' => $videoCategories,
         ]);
     }
 
@@ -80,7 +83,9 @@ class VideoController extends Controller implements HasMiddleware
             'is_free' => 'nullable|boolean',
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
-            'video_file' => 'required|file|mimes:mp4|max:307200', // 300MB
+            'link' => 'nullable|string|max:255',
+            'video_file' => 'nullable|file|mimes:mp4|max:307200', // 300MB
+            'category_code' => 'nullable|string|exists:video_categories,code',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'playlist_code' => 'nullable|string|max:255',
             'order_index' => 'nullable|numeric|max:255',
@@ -132,7 +137,10 @@ class VideoController extends Controller implements HasMiddleware
      */
     public function show(Video $video)
     {
-        return Inertia::render('admin/videos/Show', [
+        $videoCategories = VideoCategory::where('status', 'active')->orderBy('name')->get();
+        $video = Video::where('status', 'active')->orderBy('name')->with('image')->get();
+        return Inertia::render('admin/videos/Create', [
+            'videoCategories' => $videoCategories,
             'video' => $video
         ]);
     }
@@ -143,8 +151,10 @@ class VideoController extends Controller implements HasMiddleware
      */
     public function edit(Video $video)
     {
+        $videoCategories = VideoCategory::where('status', 'active')->orderBy('name')->get();
         return Inertia::render('admin/videos/Create', [
             'editData' => $video,
+            'videoCategories' => $videoCategories,
             'playlists' => VideoPlayList::where('status', 'active')->orderBy('id', 'desc')->get(),
         ]);
     }
@@ -159,7 +169,9 @@ class VideoController extends Controller implements HasMiddleware
             'is_free' => 'nullable|boolean',
             'title' => 'required|string|max:255',
             'title_kh' => 'nullable|string|max:255',
+            'link' => 'nullable|string|max:255',
             'video_file' => 'nullable|file|mimes:mp4|max:307200',
+            'category_code' => 'nullable|string|exists:video_categories,code',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'playlist_code' => 'nullable|string|max:255',
             'order_index' => 'nullable|numeric|max:255',
@@ -221,7 +233,7 @@ class VideoController extends Controller implements HasMiddleware
     public function videos_free_status(Request $request, Video $video)
     {
         $request->validate([
-            'status' => 'required|string|in:free,subscribe',
+            'status' => 'nullable|string|in:free,subscribe',
         ]);
         $video->update([
             'is_free' => $request->status == 'free',

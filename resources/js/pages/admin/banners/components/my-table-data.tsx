@@ -51,19 +51,19 @@ const MyTableData = () => {
                             <TableHead className="w-[50px]">{t('No')}</TableHead>
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
-                            <TableHead className="text-center">Video</TableHead>
+                            {/* <TableHead className="text-center">Video</TableHead> */}
                             <TableHead className="text-center">Link</TableHead>
                             <TableHead onClick={() => handleSort('title')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Title')}
                                 </span>
                             </TableHead>
-                           <TableHead onClick={() => handleSort('title_kh')}>
+                           {/*<TableHead onClick={() => handleSort('title_kh')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Title Khmer')}
                                 </span>
                             </TableHead>
-                            {/* <TableHead onClick={() => handleSort('short_description')}>
+                             <TableHead onClick={() => handleSort('short_description')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Short Description')}
                                 </span>
@@ -83,16 +83,17 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Status')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('type')}>
+                            {/* <TableHead onClick={() => handleSort('type')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Type')}
                                 </span>
-                            </TableHead>
+                            </TableHead> 
                             <TableHead onClick={() => handleSort('position_code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> Position Code
                                 </span>
                             </TableHead>
+                            */}
                             <TableHead onClick={() => handleSort('created_at')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Created at')}
@@ -184,7 +185,7 @@ const MyTableData = () => {
                                         />
                                     )}
                                 </TableCell>
-                                <TableCell className="text-center">
+                                {/* <TableCell className="text-center">
                                     {item.video ? (
                                         <a href={`/assets/files/banners/videos/${item.video}`} target="_blank">
                                             <MyTooltipButton variant="ghost" title={item.video}>
@@ -194,7 +195,7 @@ const MyTableData = () => {
                                     ) : (
                                         '---'
                                     )}
-                                </TableCell>
+                                </TableCell> */}
                                 <TableCell className="text-center">
                                     {item.link ? (
                                         <a href={`${item.link}`} target="_blank">
@@ -217,8 +218,8 @@ const MyTableData = () => {
                                     )}
                                 </TableCell>
                                 <TableCell>{item.title || '---'}</TableCell>
-                                <TableCell>{item.title_kh || '---'}</TableCell>
-                                {/* <TableCell>{item.short_description || '---'}</TableCell>
+                                {/*<TableCell>{item.title_kh || '---'}</TableCell>
+                                 <TableCell>{item.short_description || '---'}</TableCell>
                                 <TableCell>{item.short_description_kh || '---'}</TableCell> */}
                                 <TableCell>{item.order_index || '---'}</TableCell>
                                 <TableCell>
@@ -233,8 +234,8 @@ const MyTableData = () => {
                                         <span className="capitalize">{item.status}</span>
                                     )}
                                 </TableCell>
-                                <TableCell>{item.type || '---'}</TableCell>
-                                <TableCell>{item.position_code || '---'}</TableCell>
+                                {/* <TableCell>{item.type || '---'}</TableCell> 
+                                <TableCell>{item.position_code || '---'}</TableCell>*/}
                                 <TableCell>
                                     {item.created_at
                                         ? new Date(item.created_at).toLocaleDateString('en-UK', {

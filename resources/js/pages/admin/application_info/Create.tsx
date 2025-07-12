@@ -130,7 +130,7 @@ export default function Create() {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-6">
+                    <div className="col-span-12 ">
                         <FormField
                             control={form.control}
                             name="name"
@@ -145,7 +145,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                    <div className="col-span-6">
+                    {/* <div className="col-span-6">
                         <FormField
                             control={form.control}
                             name="name_kh"
@@ -159,9 +159,9 @@ export default function Create() {
                                 </FormItem>
                             )}
                         />
-                    </div>
+                    </div> */}
                 </div>
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="address"
                     render={({ field }) => (
@@ -313,7 +313,7 @@ export default function Create() {
                             )}
                         />
                     </div>
-                </div>
+                </div> */}
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-6">
                         <FormField

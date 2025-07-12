@@ -181,7 +181,7 @@ export default function Create() {
                         </div>
                     </div>
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -197,7 +197,7 @@ export default function Create() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="title_kh"
@@ -211,7 +211,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* <FormField
@@ -247,15 +247,15 @@ export default function Create() {
                             <p className="mb-1 text-sm font-medium">{t('Short Description')}</p>
                             <MyCkeditor5 data={short_description} setData={setShort_description} />
                         </div>
-                        <div>
+                        {/* <div>
                             <p className="mb-1 text-sm font-medium">{t('Short Description Khmer')}</p>
                             <MyCkeditor5 data={short_description_kh} setData={setShort_description_kh} />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
                         <div className="col-span-6 flex space-x-2">
-                            <span>
+                            {/* <span>
                                 <FormField
                                     control={form.control}
                                     name="source"
@@ -294,7 +294,7 @@ export default function Create() {
                                         </FormItem>
                                     )}
                                 />
-                            </span>
+                            </span> */}
                             <span className="flex-1">
                                 <FormField
                                     control={form.control}
@@ -313,7 +313,7 @@ export default function Create() {
                             </span>
                         </div>
 
-                        {types ? (
+                        {/* {types ? (
                             <div className="col-span-6">
                                 <FormField
                                     control={form.control}
@@ -333,7 +333,7 @@ export default function Create() {
                                                             {typeObject.label}
                                                         </SelectItem>
                                                     ))}
-                                                    {/* <SelectItem value="link">Link</SelectItem> */}
+                                                     <SelectItem value="link">Link</SelectItem> 
                                                 </SelectContent>
                                             </Select>
                                             <FormDescription>{t('Choose type (Link) for external content and fill Link input.')}</FormDescription>
@@ -342,10 +342,26 @@ export default function Create() {
                                     )}
                                 />
                             </div>
-                        ) : null}
+                        ) : null} */}
+                         <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="order_index"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('Order Index')}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t('Order Index')} type="number" {...field} />
+                                        </FormControl>
+                                        <FormDescription>{t('Lower number is priority')}</FormDescription>
+                                        <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-12 gap-4">
+                    {/* <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -386,9 +402,9 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-12">
+                        {/* <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="parent_id"
@@ -440,7 +456,7 @@ export default function Create() {
                                                                         )}
                                                                     />
                                                                     <span className="font-mono"> {parent?.order_index}</span>
-                                                                    {/* {parent?.order_index && getDashes(parent?.order_index)}  */}
+                                                                    {parent?.order_index && getDashes(parent?.order_index)} 
                                                                     {parent.title}
                                                                 </CommandItem>
                                                             ))}
@@ -454,9 +470,32 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
+                        </div> */}
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="status"
+                                render={({ field }) => (
+                                    <FormItem key={field.value}>
+                                        <FormLabel>{t('Status')}</FormLabel>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select Status" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="active">{t('Active')}</SelectItem>
+                                                <SelectItem value="inactive">{t('Inactive')}</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
                         </div>
 
-                        {/* <div className="col-span-6">
+                        <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="position_code"
@@ -522,7 +561,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div> */}
+                        </div>
                     </div>
                     <FormField
                         control={form.control}
@@ -600,10 +639,10 @@ export default function Create() {
                             <p className="mb-1 text-sm font-medium">{t('Long Description')}</p>
                             <MyCkeditor5 data={long_description} setData={setLong_description} />
                         </div>
-                        <div>
+                        {/* <div>
                             <p className="mb-1 text-sm font-medium">{t('Long Description Khmer')}</p>
                             <MyCkeditor5 data={long_description_kh} setData={setLong_description_kh} />
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* End Long Description */}

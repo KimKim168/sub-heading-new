@@ -5,73 +5,76 @@ import MyHeadingStyle1 from './my-heading-style-1';
 import MySearch from './my-search';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from './ui/dialog';
+import { usePage } from '@inertiajs/react';
+import VideoFilterCategory from '@/pages/subHeading/components/video-category';
 
-const videos = [
-    {
-        id: 1,
-        name: 'Intro to Our Library',
-        link: 'https://www.youtube.com/embed/1VdS89qP3O8',
-        images: [
-            {
-                image: 'note5.jpg',
-            },
-        ],
-    },
-    {
-        id: 2,
-        name: 'ភោជនីយដ្ឋានដែលមានវ័យចំណាស់ជាងគេលើពិភពលោក El Soprino De Botin',
-        link: 'https://www.youtube.com/embed/6DqN_vXB_kk?si=Z_WaNkD33oRtZkuf',
-        images: [
-            {
-                image: 'note6.png',
-            },
-        ],
-    },
-    {
-        id: 3,
-        name: 'Student Interviews',
-        link: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-        images: [
-            {
-                image: 'note3.png',
-            },
-        ],
-    },
-    {
-        id: 4,
-        name: 'Library Services Tour',
-        link: 'https://www.youtube.com/embed/tgbNymZ7vqY',
-        images: [
-            {
-                image: 'note1.png',
-            },
-        ],
-    },
-    {
-        id: 5,
-        name: 'Intro to Our Library',
-        link: 'https://www.youtube.com/embed/1VdS89qP3O8',
-        images: [
-            {
-                image: 'note5.jpg',
-            },
-        ],
-    },
-    {
-        id: 6,
-        name: 'ភោជនីយដ្ឋានដែលមានវ័យចំណាស់ជាងគេលើពិភពលោក El Soprino De Botin',
-        link: 'https://www.youtube.com/embed/6DqN_vXB_kk?si=Z_WaNkD33oRtZkuf',
-        images: [
-            {
-                image: 'note6.png',
-            },
-        ],
-    },
-];
+// const videos = [
+//     {
+//         id: 1,
+//         name: 'Intro to Our Library',
+//         link: 'https://www.youtube.com/embed/1VdS89qP3O8',
+//         images: [
+//             {
+//                 image: 'note5.jpg',
+//             },
+//         ],
+//     },
+//     {
+//         id: 2,
+//         name: 'ភោជនីយដ្ឋានដែលមានវ័យចំណាស់ជាងគេលើពិភពលោក El Soprino De Botin',
+//         link: 'https://www.youtube.com/embed/6DqN_vXB_kk?si=Z_WaNkD33oRtZkuf',
+//         images: [
+//             {
+//                 image: 'note6.png',
+//             },
+//         ],
+//     },
+//     {
+//         id: 3,
+//         name: 'Student Interviews',
+//         link: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+//         images: [
+//             {
+//                 image: 'note3.png',
+//             },
+//         ],
+//     },
+//     {
+//         id: 4,
+//         name: 'Library Services Tour',
+//         link: 'https://www.youtube.com/embed/tgbNymZ7vqY',
+//         images: [
+//             {
+//                 image: 'note1.png',
+//             },
+//         ],
+//     },
+//     {
+//         id: 5,
+//         name: 'Intro to Our Library',
+//         link: 'https://www.youtube.com/embed/1VdS89qP3O8',
+//         images: [
+//             {
+//                 image: 'note5.jpg',
+//             },
+//         ],
+//     },
+//     {
+//         id: 6,
+//         name: 'ភោជនីយដ្ឋានដែលមានវ័យចំណាស់ជាងគេលើពិភពលោក El Soprino De Botin',
+//         link: 'https://www.youtube.com/embed/6DqN_vXB_kk?si=Z_WaNkD33oRtZkuf',
+//         images: [
+//             {
+//                 image: 'note6.png',
+//             },
+//         ],
+//     },
+// ];
 
 export default function MyVideoGallery() {
-    // const { videos } = usePage().props;
-    // console.log(videos);
+    const { tableData } = usePage().props;
+    const videos = tableData?.data;
+    console.log(videos);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -105,16 +108,8 @@ export default function MyVideoGallery() {
     }
     return (
         <>
+        <VideoFilterCategory/>
             <div className="mx-auto max-w-screen-xl px-6 lg:px-0">
-                    <div className='md:hidden mt-5'><MySearch /></div>
-                <div className="flex items-center justify-between">
-                    <MyHeadingStyle1 title="Videos" />
-                    <div className="flex gap-2 items-center">
-                        <div className='hidden md:block'><MySearch /></div>
-                        <FilterCategory />
-                    </div>
-                </div>
-
                 <div>
                     <div className={`grid grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-3`}>
                         {videos?.map((item, index) => (
@@ -127,12 +122,12 @@ export default function MyVideoGallery() {
                                 }}
                             >
                                 <img
-                                    src={`/assets/demo-images/note-tech/${item.images[0].image}`}
+                                    src={`/assets/images/videos/${item.image}`}
                                     alt="image"
                                     className="aspect-video w-full object-cover"
                                 />
                                 <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4">
-                                    <div className="text-base font-semibold text-white">{item.name}</div>
+                                    <div className="text-base font-semibold text-white">{item.title}</div>
                                     {/* <div className="mt-1 text-sm text-gray-300">{item.short_description}</div> */}
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-1 text-sm text-white">

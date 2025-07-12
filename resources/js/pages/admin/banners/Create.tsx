@@ -139,7 +139,7 @@ export default function Create() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -154,7 +154,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
-
+{/* 
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -169,7 +169,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <FormField
                         control={form.control}
@@ -184,22 +184,22 @@ export default function Create() {
                             </FormItem>
                         )}
                     />
-                    <FormField
-                        control={form.control}
-                        name="short_description_kh"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>{t('Short Description Khmer')}</FormLabel>
-                                <FormControl>
-                                   <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
-                                </FormControl>
-                                <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
-                            </FormItem>
-                        )}
-                    />
+                        {/* <FormField
+                            control={form.control}
+                            name="short_description_kh"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('Short Description Khmer')}</FormLabel>
+                                    <FormControl>
+                                    <AutosizeTextarea placeholder={t("Short Description Khmer")} className="resize-none" {...field} />
+                                    </FormControl>
+                                    <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
+                                </FormItem>
+                            )}
+                        /> */}
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
                         <div className="col-span-6 flex space-x-2">
-                            <span>
+                            {/* <span>
                                 <FormField
                                     control={form.control}
                                     name="source"
@@ -238,7 +238,7 @@ export default function Create() {
                                         </FormItem>
                                     )}
                                 />
-                            </span>
+                            </span> */}
                             <span className="flex-1">
                                 <FormField
                                     control={form.control}
@@ -256,8 +256,24 @@ export default function Create() {
                                 />
                             </span>
                         </div>
-
                         <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="order_index"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('Order Index')}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t('Order Index')} type="number" {...field} />
+                                        </FormControl>
+                                        <FormDescription>{t('Lower number is priority')}</FormDescription>
+                                        <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="position_code"
@@ -323,10 +339,10 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="order_index"
@@ -341,9 +357,9 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
 
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="status"
@@ -367,35 +383,35 @@ export default function Create() {
                             />
                         </div>
                     </div>
-                    <div className="grid grid-cols-12 gap-4">
-                        {types ? (
-                            <div className="col-span-6">
-                                <FormField
-                                    control={form.control}
-                                    name="type"
-                                    render={({ field }) => (
-                                        <FormItem key={field.value}>
-                                             <FormLabel>{t('Type')}</FormLabel>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                <FormControl>
-                                                    <SelectTrigger>
-                                                        <SelectValue placeholder={t("Select Type")} />
-                                                    </SelectTrigger>
-                                                </FormControl>
-                                                <SelectContent>
-                                                    {types.map((typeObject) => (
-                                                        <SelectItem key={typeObject.id + typeObject.type} value={typeObject.type}>{typeObject.label}</SelectItem>
-                                                    ))}
-                                                    {/* <SelectItem value="link">Link</SelectItem> */}
-                                                </SelectContent>
-                                            </Select>
-                                            <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                        ) : null}
-                    </div>
+                        {/* <div className="grid grid-cols-12 gap-4">
+                            {types ? (
+                                <div className="col-span-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="type"
+                                        render={({ field }) => (
+                                            <FormItem key={field.value}>
+                                                <FormLabel>{t('Type')}</FormLabel>
+                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                    <FormControl>
+                                                        <SelectTrigger>
+                                                            <SelectValue placeholder={t("Select Type")} />
+                                                        </SelectTrigger>
+                                                    </FormControl>
+                                                    <SelectContent>
+                                                        {types.map((typeObject) => (
+                                                            <SelectItem key={typeObject.id + typeObject.type} value={typeObject.type}>{typeObject.label}</SelectItem>
+                                                        ))}
+                                                        <SelectItem value="link">Link</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                                <FormMessage>{errors.type && <div>{errors.type}</div>}</FormMessage>
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            ) : null}
+                        </div> */}
                     <FormField
                         control={form.control}
                         name="images"

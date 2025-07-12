@@ -25,6 +25,8 @@ const formSchema = z.object({
     title_kh: z.string().max(255).optional(),
     short_description: z.string().max(500).optional(),
     short_description_kh: z.string().max(500).optional(),
+    category_code: z.string().optional(),
+    link: z.string().max(255).optional(),
     status: z.string().optional(),
     is_free: z.boolean().optional(),
     playlist_code: z.string().optional(),
@@ -61,7 +63,7 @@ export default function Create() {
         },
     };
     const { post, progress, processing, transform, errors } = inertiaUseForm();
-    const { playlists, types, editData, links, readOnly } = usePage().props;
+    const { playlists, types, editData, links, readOnly, videoCategories } = usePage().props;
 
     const [files, setFiles] = useState<File[] | null>(null);
     const [videoFiles, setVideoFiles] = useState<File[] | null>(null);
@@ -73,6 +75,8 @@ export default function Create() {
             title_kh: editData?.title_kh || '',
             short_description: editData?.short_description || '',
             short_description_kh: editData?.short_description_kh || '',
+            category_code: editData?.category_code?.toString() || '',
+            link: editData?.link || '',
             status: editData?.status || 'active',
             is_free: editData?.is_free != null ? Boolean(editData.is_free) : false,
             playlist_code: editData?.playlist_code?.toString() || '',
@@ -165,7 +169,7 @@ export default function Create() {
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5">
                     <div className="grid grid-cols-12 gap-4">
-                        <div className="col-span-6">
+                        <div className="col-span-12">
                             <FormField
                                 control={form.control}
                                 name="title"
@@ -181,7 +185,7 @@ export default function Create() {
                             />
                         </div>
 
-                        <div className="col-span-6">
+                        {/* <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="title_kh"
@@ -195,7 +199,7 @@ export default function Create() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     <FormField
@@ -212,7 +216,7 @@ export default function Create() {
                         )}
                     />
 
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="short_description_kh"
                         render={({ field }) => (
@@ -224,11 +228,11 @@ export default function Create() {
                                 <FormMessage>{errors.short_description_kh && <div>{errors.short_description_kh}</div>}</FormMessage>
                             </FormItem>
                         )}
-                    />
+                    /> */}
 
                     <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
-                            <FormField
+                            {/* <FormField
                                 control={form.control}
                                 name="playlist_code"
                                 render={({ field }) => (
@@ -292,13 +296,125 @@ export default function Create() {
                                                 </Command>
                                             </PopoverContent>
                                         </Popover>
-                                        {/* <FormDescription>{t('Select the playlist where this post will show.')}</FormDescription> */}
+                                        <FormDescription>{t('Select the playlist where this post will show.')}</FormDescription>
                                         <FormMessage>{errors.playlist_code && <div>{errors.playlist_code}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            /> */}
+
+                            <FormField
+                                control={form.control}
+                                name="link"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('Link')}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t('Link')} type="text" {...field} />
+                                        </FormControl>
+                                        <FormDescription>{t('For external content you can put link here.')}</FormDescription>
+                                        <FormMessage>{errors.link && <div>{errors.link}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />
                         </div>
-                        <div className="col-span-3">
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="category_code"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel>{t('Category')}</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant="outline"
+                                                        role="combobox"
+                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
+                                                    >
+                                                        {field.value
+                                                            ? (() => {
+                                                                  const category = videoCategories?.find((c) => c.code === field.value);
+                                                                  return category ? `${category.name} (${category.name_kh})` : '';
+                                                              })()
+                                                            : t('Select category')}
+                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="p-0">
+                                                <Command>
+                                                    <CommandInput placeholder="Search category..." />
+                                                    <CommandList>
+                                                        <CommandEmpty>{t('No data')}</CommandEmpty>
+                                                        <CommandGroup>
+                                                            <CommandItem value="" onSelect={() => form.setValue('category_code', '')}>
+                                                                <Check
+                                                                    className={cn('mr-2 h-4 w-4', field.value === '' ? 'opacity-100' : 'opacity-0')}
+                                                                />
+                                                                {t('Select category')}
+                                                            </CommandItem>
+                                                            {videoCategories?.map((category) => (
+                                                                <CommandItem
+                                                                    key={category.code}
+                                                                    value={category.code}
+                                                                    onSelect={() => form.setValue('category_code', category.code)}
+                                                                >
+                                                                    <Check
+                                                                        className={cn(
+                                                                            'mr-2 h-4 w-4',
+                                                                            category.code === field.value ? 'opacity-100' : 'opacity-0',
+                                                                        )}
+                                                                    />
+                                                                    {category.image && (
+                                                                        <img
+                                                                            className="size-6 object-contain"
+                                                                            src={`/assets/images/video_categories/thumb/${category.image}`}
+                                                                            onError={(e) => (e.currentTarget.style.display = 'none')}
+                                                                        />
+                                                                    )}
+                                                                    {category.parent_code && '-- '}
+                                                                    {category.name} {category.name_kh && `(${category.name_kh})`}
+                                                                </CommandItem>
+                                                            ))}
+                                                        </CommandGroup>
+                                                    </CommandList>
+                                                </Command>
+                                            </PopoverContent>
+                                        </Popover>
+                                        <FormDescription>{t('Select the category where this item belong to.')}</FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* 
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="is_free"
+                                render={({ field }) => (
+                                    <FormItem className="flex items-center space-y-0">
+                                        <FormLabel className="mr-3">{t('Free Access')}</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                type="checkbox"
+                                                checked={field.value}
+                                                onChange={(e) => field.onChange(e.target.checked)}
+                                                disabled={readOnly}
+                                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                            />
+                                        </FormControl>
+                                        <FormDescription>{t('Check if this video is free to access')}</FormDescription>
+                                        <FormMessage>{errors.is_free && <div>{errors.is_free}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div> */}
+                    </div>
+                    <div className="grid grid-cols-12 gap-4">
+                        <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="order_index"
@@ -314,7 +430,7 @@ export default function Create() {
                                 )}
                             />
                         </div>
-                        <div className="col-span-3">
+                        <div className="col-span-6">
                             <FormField
                                 control={form.control}
                                 name="status"
@@ -333,29 +449,6 @@ export default function Create() {
                                             </SelectContent>
                                         </Select>
                                         <FormMessage>{errors.status && <div>{errors.status}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="is_free"
-                                render={({ field }) => (
-                                    <FormItem className="flex items-center space-y-0">
-                                        <FormLabel className="mr-3">{t('Free Access')}</FormLabel>
-                                        <FormControl>
-                                            <input
-                                                type="checkbox"
-                                                checked={field.value}
-                                                onChange={(e) => field.onChange(e.target.checked)}
-                                                disabled={readOnly}
-                                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                            />
-                                        </FormControl>
-                                        {/* <FormDescription>{t('Check if this video is free to access')}</FormDescription> */}
-                                        <FormMessage>{errors.is_free && <div>{errors.is_free}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />
@@ -426,7 +519,7 @@ export default function Create() {
                     )}
                     {/* Start Long Description */}
 
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="video_file"
                         render={({ field }) => (
@@ -465,10 +558,7 @@ export default function Create() {
                                                         </div>
                                                     </div>
                                                 </FileUploaderItem>
-                                                // <FileUploaderItem key={i} index={i}>
-                                                //     <Paperclip className="h-4 w-4 stroke-current" />
-                                                //     <span>{file.name}</span>
-                                                // </FileUploaderItem>
+                                                
                                             ))}
                                         </FileUploaderContent>
                                     </FileUploader>
@@ -490,9 +580,9 @@ export default function Create() {
                                                     >
                                                         <source src={`/assets/files/videos/${editData?.video_file}`} />
                                                     </video>
-                                                    {/* <div className="bg-opacity-50 absolute right-0 bottom-0 left-0 bg-black p-1 text-xs text-white">
+                                                    <div className="bg-opacity-50 absolute right-0 bottom-0 left-0 bg-black p-1 text-xs text-white">
                                                         {editData?.video_file}
-                                                    </div> */}
+                                                    </div>
                                                 </div>
                                             </span>
                                         </div>
@@ -500,7 +590,7 @@ export default function Create() {
                                 )}
                             </FormItem>
                         )}
-                    />
+                    /> */}
 
                     {/* End Long Description */}
                     {progress && <ProgressWithValue value={progress.percentage} position="start" />}

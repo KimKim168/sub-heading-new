@@ -10,7 +10,7 @@ import {
     NavBody,
     NavItems,
 } from '@/components/ui/resizable-navbar';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Switch from '../components/my-switch';
 import MyFooter from '../components/my-footer';
 import { Download } from 'lucide-react';
@@ -28,13 +28,31 @@ export default function Layout({ children }: LayoutProps) {
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+     const [pathname, setPathname] = useState('');
+
+    useEffect(() => {
+        setPathname(window.location.pathname);
+    }, []);
+
+    const isActive = (path: string) => pathname === path ? 'text-primary underline font-semibold' : '';
+
 
     return (
         <div className="relative w-full">
             <Navbar>
                 <NavBody>
                     <NavbarLogo />
-                    <NavItems items={navItems} />
+                    <div className="hidden md:flex gap-6 items-center">
+                        {navItems.map((item, idx) => (
+                            <a
+                                key={idx}
+                                href={item.link}
+                                className={`text-neutral-700 dark:text-neutral-200 hover:text-primary transition ${isActive(item.link)}`}
+                            >
+                                {item.name}
+                            </a>
+                        ))}
+                    </div>
                     <div className="flex items-center gap-4">
                         <NavbarButton variant="primary" className='flex items-center' > <Download className="w-4 h-4 mr-2"/><a href='/download'>Download</a> </NavbarButton>
                         <Switch />

@@ -13,8 +13,8 @@ const Index = () => {
             <MyBanner />
             <MyApp />
             <MyMultiImage />
-            <MyBanner />
-            <MyApp />
+            {/* <MyBanner />
+            <MyApp /> */}
             <MyBanner />
             <MyMultiImage />
             <MyHeroBottom />

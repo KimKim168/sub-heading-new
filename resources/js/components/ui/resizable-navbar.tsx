@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { usePage } from "@inertiajs/react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
   motion,
@@ -231,13 +232,14 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = () => {
+  const { application_info } = usePage().props;
   return (
     <a
-      href="#"
+      href="/"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <img
-        src="/assets/demo-images/note-tech/note-logo-no-bg.png"
+        src={`/assets/images/application_info/${application_info.image}`}
         alt="logo"
         width={50}
         height={50}
