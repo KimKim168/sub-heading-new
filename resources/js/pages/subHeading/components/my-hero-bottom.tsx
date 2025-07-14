@@ -14,7 +14,7 @@ const MyHeroBottom = () => {
 
             {/* Right: Advertisement (match height) */}
             <div className="h-full">
-                <img src="/assets/demo-images/note-tech/note-logo.png" alt="Ad" className="h-full w-full object-cover" />   
+                <img src="/assets/demo-images/note-logo.png" alt="Ad" className="h-full w-full object-cover" />   
             </div>
         </div>
     );

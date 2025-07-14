@@ -5,16 +5,16 @@ import { useState } from 'react';
 const MyMultiImage = () => {
  const images = [
      {
-       src: "/assets/demo-images/note-tech/note1.png",
+       src: "/assets/demo-images/note1.png",
      },
       {
-       src: "/assets/demo-images/note-tech/note2.png",
+       src: "/assets/demo-images/note2.png",
      },
      {
-       src: "/assets/demo-images/note-tech/note3.png",
+       src: "/assets/demo-images/note3.png",
      },
      {
-       src: "/assets/demo-images/note-tech/note2.png",
+       src: "/assets/demo-images/note2.png",
      },
    ];
  

@@ -7,7 +7,7 @@ const MyHeroTop = () => {
                 <MyNewSlideBottom />
             </div>
             <div className="aspect-[21/9]">
-                <img src="/assets/demo-images/note-tech/note3.png" className="h-full w-full object-cover" />
+                <img src="/assets/demo-images/note3.png" className="h-full w-full object-cover" />
             </div>
         </div>
     );
