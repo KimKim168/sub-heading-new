@@ -70,17 +70,17 @@ Route::get('/', function (Request $request) {
         ->where('status', 'active')
         ->get();
 
-    $heroSection = Page::where('position_code', 'HERO_SECTION_ON_THE_HOME_PAGE')
-        ->where('status', 'active')
-        ->with('images')
-        ->orderBy('order_index')
-        ->first();
+    // $heroSection = Page::where('position_code', 'HERO_SECTION_ON_THE_HOME_PAGE')
+    //     ->where('status', 'active')
+    //     ->with('images')
+    //     ->orderBy('order_index')
+    //     ->first();
 
-    $relatedArticle = Page::where('position_code', 'RELATED_ARTICLE')
-        ->where('status', 'active')
-        ->with('images')
-        ->orderBy('order_index')
-        ->get();
+    // $relatedArticle = Page::where('position_code', 'RELATED_ARTICLE')
+    //     ->where('status', 'active')
+    //     ->with('images')
+    //     ->orderBy('order_index')
+    //     ->get();
 
     $postCategories = VideoCategory::where('parent_code', 'VIDEO')
         ->where('status', 'active')
@@ -91,8 +91,8 @@ Route::get('/', function (Request $request) {
         'banners' => $banners,
         'tableData' => $tableData, // items (how to)
         'tableDataVideo' => $tableDataVideo, // paginated videos
-        'heroSection' => $heroSection,
-        'relatedArticle' => $relatedArticle,
+        // 'heroSection' => $heroSection,
+        // 'relatedArticle' => $relatedArticle,
         'postCategories' => $postCategories,
     ]);
 });
