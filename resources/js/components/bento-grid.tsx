@@ -44,7 +44,7 @@ export const BentoGridItem = ({
         className,
       )}
     >
-      <Link href={`/how_to/${id}`}>
+      <Link key={id} href={`/how_to/${id}`}>
        <img
         src={`/assets/images/items/${image}`}
         alt="Design"

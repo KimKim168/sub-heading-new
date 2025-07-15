@@ -15,14 +15,14 @@ const MyFooter = () => {
         <footer className="w-full py-14">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-3xl">
-                    <a href="/" className="flex items-center justify-center gap-2">
+                    {/* <a href="/" className="flex items-center justify-center gap-2">
                         <img
                             src={`/assets/images/application_info/${application_info.image}`}
                             alt="logo"
                             width={100}
                             height={100}
                         />
-                    </a>
+                    </a> */}
 
                     <ul className="mb-5 grid grid-cols-2 gap-4 border-b border-gray-200 pb-4 text-center text-lg transition-all duration-500 md:flex md:flex-row md:items-center md:justify-center md:gap-12 md:py-5">
                         <li><a href="/" className={`cursor-pointer text-primary ${isActive("/")}`}>Home</a></li>

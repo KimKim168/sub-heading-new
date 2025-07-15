@@ -1,12 +1,8 @@
-import FilterCategory from '@/pages/subHeading/components/FilterCategory';
+import { Button } from '@/components/ui/button';
+import { Dialog,DialogContent, DialogTitle, DialogDescription } from '@/pages/rule-library/components/ui/dialog';
+import { Link, usePage } from '@inertiajs/react';
 import { ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import MyHeadingStyle1 from './my-heading-style-1';
-import MySearch from './my-search';
-import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from './ui/dialog';
-import { usePage } from '@inertiajs/react';
-import VideoFilterCategory from '@/pages/subHeading/components/video-category';
 
 // const videos = [
 //     {
@@ -71,7 +67,7 @@ import VideoFilterCategory from '@/pages/subHeading/components/video-category';
 //     },
 // ];
 
-export default function MyVideoGallery() {
+export default function MyVideoIndexGallery() {
     const { tableDataVideo } = usePage().props;
     const videos = tableDataVideo?.data;
     // console.log(videos);
@@ -108,8 +104,7 @@ export default function MyVideoGallery() {
     }
     return (
         <>
-        <VideoFilterCategory/>
-            <div className="mx-auto max-w-screen-xl px-6 lg:px-0">
+            <div className="mx-auto mt-5 max-w-screen-xl px-6 lg:px-0">
                 <div>
                     <div className={`grid grid-cols-1 gap-4 lg:grid-cols-3 xl:grid-cols-3`}>
                         {videos?.map((item, index) => (
@@ -121,11 +116,7 @@ export default function MyVideoGallery() {
                                     setIsOpen(true);
                                 }}
                             >
-                                <img
-                                    src={`/assets/images/videos/${item.image}`}
-                                    alt="image"
-                                    className="aspect-video w-full object-cover"
-                                />
+                                <img src={`/assets/images/videos/${item.image}`} alt="image" className="aspect-video w-full object-cover" />
                                 <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4">
                                     <div className="text-base font-semibold text-white">{item.title}</div>
                                     {/* <div className="mt-1 text-sm text-gray-300">{item.short_description}</div> */}
@@ -176,6 +167,25 @@ export default function MyVideoGallery() {
                             </Button>
                         </DialogContent>
                     </Dialog>
+                    {videos?.length >= 3 && (
+                        <div className="mt-5 flex justify-center">
+                            <Link
+                                href="/videos"
+                                className="group inline-flex items-center gap-2 rounded-full bg-[#e31c24] px-6 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-[#c0141a] hover:shadow-lg"
+                            >
+                                See More
+                                <svg
+                                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

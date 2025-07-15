@@ -27,7 +27,7 @@ const MyMultiImage = () => {
      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
  
    return (
-     <div className="max-w-screen-xl mx-auto px-5 xl:px-0 mt-10">
+     <div className="max-w-screen-xl mx-auto px-5 xl:px-0 mt-5">
        <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
          {images.map((img, index) => (
            <div

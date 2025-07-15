@@ -6,6 +6,9 @@ import Layout from '../layout/MyLayout';
 const Index = () => {
     return (
         <Layout>
+            <div className="mt-5 ">
+                <img src="/assets/demo-images/note4.png" className="aspect-[21/4] w-full object-cover" />
+            </div>
             <div className="mt-5 md:hidden px-6 lg:px-0">
                 <MySearch />
             </div>
@@ -17,7 +20,11 @@ const Index = () => {
                     </div>
                 </div>
             </div>
+            
             <MyVideoGallery />
+            <div className="mt-5">
+                <img src="/assets/demo-images/note4.png" className="aspect-[21/4] w-full object-cover" />
+            </div>
         </Layout>
     );
 };
