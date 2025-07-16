@@ -31,7 +31,7 @@ function MyApp() {
             <div className="mt-5 grid grid-cols-1 gap-4 px-5 sm:grid-cols-2 lg:grid-cols-4 xl:px-0">
                 {deliveries.map((item, index) => (
                     <Link href={`/how_to/${item.id}`}>
-                        <div key={index} className="mx-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
+                        <div key={index} className="mx-auto h-full rounded-2xl border border-gray-200 bg-white shadow-sm">
                             {/* Top Section */}
                             <div className="relative rounded-t-2xl p-2">
                                 <img
@@ -42,7 +42,7 @@ function MyApp() {
                             {/* Bottom Section */}
                             <div className="p-4">
                                 <h3 className="mb-1 line-clamp-2 text-lg font-semibold text-gray-900">{item.name}</h3>
-                                <p className="text-lage mb-4 line-clamp-5 leading-relaxed text-gray-800">{item?.short_description}</p>
+                                <p className="text-lage mb-4 line-clamp-3 leading-relaxed text-gray-800">{item?.short_description}</p>
                                 {/* <div className="border-t border-gray-200 pt-2">
                             <p className="text-center text-sm text-gray-600">{item.status}</p>
                         </div> */}

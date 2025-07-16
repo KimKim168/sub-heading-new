@@ -138,12 +138,22 @@ export default function MyVideoIndexGallery() {
                             <DialogTitle className="hidden" />
                             <DialogDescription className="hidden" />
                             <div className="relative flex-grow">
-                                <iframe
+                                {/* <iframe
                                     src={`${getVideoUrl(videos[currentIndex].link)}?&autoplay=1`} // Ensure autoplay works on YouTube
                                     className="h-full w-full rounded-2xl"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
-                                />
+                                /> */}
+                                 {videos[currentIndex]?.link ? (
+                                    <iframe
+                                        src={`${getVideoUrl(videos[currentIndex].link)}?&autoplay=1`}
+                                        className="h-full w-full rounded-2xl"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                ) : (
+                                    <p className="text-center text-white">No video available</p>
+                                )}
                             </div>
                             <Button
                                 variant="ghost"

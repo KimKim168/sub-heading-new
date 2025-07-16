@@ -41,7 +41,7 @@ Route::get('/', function (Request $request) {
         });
     }
 
-    $tableDataVideo = $videoQuery->paginate(3)->onEachSide(1);
+    $tableDataVideo = $videoQuery->orderBy('id', 'desc')->paginate(3)->onEachSide(1);
 
     // -------- ITEM Query (How-To) --------
     $itemQuery = Item::query()
@@ -63,11 +63,12 @@ Route::get('/', function (Request $request) {
         }
     }
 
-    $tableData = $itemQuery->limit(4)->get();
+    $tableData = $itemQuery->orderBy('id', 'desc')->limit(4)->get();
 
     // -------- Static Content --------
     $banners = Banner::orderBy('order_index')
         ->where('status', 'active')
+        ->orderBy('id', 'desc')
         ->get();
 
     // $heroSection = Page::where('position_code', 'HERO_SECTION_ON_THE_HOME_PAGE')
@@ -110,7 +111,7 @@ Route::get('/how_to', function (Request $request) {
     $category_code = $request->input('category_code', '');
     $perPage = $request->input('perPage', 25);
 
-    $query = Item::query()->with('images', 'category')->orderBy('created_at', 'desc');
+    $query = Item::query()->with('images', 'category')->orderBy('id', 'desc');
 
     if ($category_code) {
         $category = ItemCategory::where('parent_code', 'HOW_TO')
@@ -193,7 +194,7 @@ Route::get('/videos', function (Request $request) {
 
     $query->where('status', 'active');
 
-    $tableDataVideo = $query->paginate($perPage)->onEachSide(1);
+    $tableDataVideo = $query->orderBy('id', 'desc')->paginate($perPage)->onEachSide(1);
 
     $postCategories = VideoCategory::where('parent_code', 'VIDEO')
         ->where('status', 'active')

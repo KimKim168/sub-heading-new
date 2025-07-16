@@ -30,7 +30,7 @@ const formSchema = z.object({
     status: z.string().optional(),
     is_free: z.boolean().optional(),
     playlist_code: z.string().optional(),
-    order_index: z.string().optional(),
+    order_index: z.string().max(255).optional(),
     image: z.instanceof(File).optional().nullable(),
     video_file: z.instanceof(File).optional().nullable(),
 });
@@ -81,6 +81,7 @@ export default function Create() {
             is_free: editData?.is_free != null ? Boolean(editData.is_free) : false,
             playlist_code: editData?.playlist_code?.toString() || '',
             order_index: editData?.order_index?.toString() || '',
+            
         },
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -424,7 +425,7 @@ export default function Create() {
                                         <FormControl>
                                             <Input placeholder={t('Order Index')} type="number" {...field} />
                                         </FormControl>
-                                        <FormDescription>{t('Video Sequence Order')}</FormDescription>
+                                        <FormDescription>{t('Lower number is priority')}</FormDescription>
                                         <FormMessage>{errors.order_index && <div>{errors.order_index}</div>}</FormMessage>
                                     </FormItem>
                                 )}
