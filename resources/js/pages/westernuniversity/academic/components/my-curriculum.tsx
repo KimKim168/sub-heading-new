@@ -8,7 +8,8 @@ const MyCurricullum = ({curriculum}:{curriculum:any}) => {
         { id: '3', image: '/assets/demo-images/02TopBackground/04 Curriculum.jpg', alt: 'Slide 3' },
         { id: '4', image: '/assets/demo-images/02TopBackground/03Campuses.jpg', alt: 'Slide 4' },
     ];
-    ;console.log(curriculum);
+    ;
+    // console.log(curriculum);
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 3000, stopOnInteraction: false })]);

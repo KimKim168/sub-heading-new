@@ -4,7 +4,7 @@ import MyHeadingStyle1 from './my-heading-style-1';
 
 const MyHeroSection = () => {
     const { heroSection } = usePage().props;
-    console.log(heroSection);
+    // console.log(heroSection);
      if (!heroSection || heroSection?.length === 0) {
         return <div className="container mx-auto my-10 max-w-screen-2xl px-3 text-center text-gray-500 lg:px-20 dark:text-gray-300"></div>;
     }

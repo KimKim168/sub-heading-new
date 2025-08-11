@@ -40,7 +40,7 @@ const OutreachCarousel = ({ images }: { images: any }) => {
 };
 
 const MyOutreachPrograms = ({ banner, outreachProgramData }: { banner: any; outreachProgramData: any }) => {
-    console.log(outreachProgramData);
+    // console.log(outreachProgramData);
 
     return (
         <div>

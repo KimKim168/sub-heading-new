@@ -29,7 +29,7 @@ const admissionFeatures = [
 ];
 
 const MyAdmissionFeature = ({ admission }: { admission: any }) => {
-  console.log(admission);
+  // console.log(admission);
   return (
     <>
       {admission?.children?.map((feature, index) => {

@@ -12,7 +12,7 @@ export function MyNewSlideBottom() {
     //     { id: '1', image: '/assets/demo-images/slide1.png', alt: 'Slide 1' },
     //     { id: '2', image: '/assets/demo-images/slide2.png', alt: 'Slide 2' },
     // ];
-    console.log(images);
+    // console.log(images);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false })]);
 

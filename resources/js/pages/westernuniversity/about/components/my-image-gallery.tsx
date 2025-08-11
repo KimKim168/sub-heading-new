@@ -24,7 +24,7 @@ const MyImageGallery = ({
     setIsOpenViewImages: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const images = selectedImages?.map((imageObject: { image: string }) => ({ src: `${imagePath}${imageObject.image}` }));
-    console.log(images);
+    // console.log(images);
     return (
         <div>
             <Lightbox
